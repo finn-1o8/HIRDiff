@@ -1,0 +1,41 @@
+{
+  "name": "HIRDiff_STURM_S2_Denoise",
+  "model": {
+    "in_channel": 6,
+    "out_channel": 6,
+    "inner_channel": 128,
+    "channel_multiplier": [1, 2, 4, 8, 8],
+    "attn_res": [16],
+    "res_blocks": 2,
+    "dropout": 0.2,
+    "Rr": 6,
+    "K_svd": 1
+  },
+  "diffusion_setting": {
+    "diffusion_steps": 1000,
+    "beta_schedule": "exp",
+    "beta_linear_start": 1e-6,
+    "beta_linear_end": 0.01
+  },
+  "dataset": {
+    "name": "STURM_S2_6BAND",
+    "dataroot": "/content/drive/MyDrive/phase1/sturm_s2_6band_for_hirdiff_input/",
+    "image_size": 128,
+    "N_channel": 6
+  },
+  "inference": {
+    "path": {
+      "resume_state": "checkpoints/diffusion/I190000_E97",
+      "results_root": "/content/drive/MyDrive/phase1/restored_images_hirdiff/sturm_s2_test_output/"
+    },
+    "params": {
+      "eta1": 16,
+      "eta2": 10,
+      "k": 8,
+      "step": 20,
+      "task_params": "50",
+      "no_rrqr": true,
+      "gpu_ids": "0"
+    }
+  }
+}
